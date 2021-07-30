@@ -10,10 +10,6 @@ import (
 	"github.com/aws/aws-sdk-go/service/rds"
 )
 
-type Response struct {
-	Message string `json:"message"`
-}
-
 func Handler() error {
 	sess := session.Must(session.NewSession())
 
@@ -33,7 +29,7 @@ func Handler() error {
 			}); err != nil {
 				return err
 			}
-		} else {
+		} else if status == "stopped" {
 			if _, err := aurora.StartDBCluster(&rds.StartDBClusterInput{
 				DBClusterIdentifier: c.DBClusterIdentifier,
 			}); err != nil {
