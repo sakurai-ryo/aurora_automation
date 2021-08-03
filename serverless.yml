@@ -43,7 +43,7 @@ functions:
     handler: bin/main
     events:
       - eventBridge:
-          schedule: cron(0,2 12 ? * TUE,FRI *) # 日本時間の11時と20時
+          schedule: cron(0 2,12/12 ? * TUE,FRI *) # 日本時間の11時と20時
           # input:
     environment:
      CLUSTER_NAME: ${self:custom.clusterName}
